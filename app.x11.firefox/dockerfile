@@ -1,0 +1,23 @@
+# ----------------
+# Image: alpine
+# Docs: https://hub.docker.com/_/alpine
+# ----------------
+
+FROM alpine:latest
+
+RUN apk update --no-cache && \
+    apk add --no-cache \
+    firefox \
+    ca-certificates \
+    pciutils-libs \
+    dbus-x11 \
+    mesa-gl \
+    mesa-dri-swrast \
+    mesa-egl \
+    pulseaudio \
+    pulseaudio-alsa \
+    alsa-lib \
+    alsa-plugins-pulse \
+    ttf-dejavu
+
+CMD [ "/bin/sh", "-c", "firefox" ]

@@ -1,0 +1,37 @@
+# -----------------
+# Compose: Firefox in a Container
+# Docs: 
+# -----------------
+
+version: "3.7"
+
+services:
+  firefox:
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: firefox:alpine
+    container_name: alpine.firefox.runtime
+    volumes:
+      - ./data:/home/$FFUSER/.mozilla
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=$DISPLAY
+    env_file:
+      - .env
+    networks:
+      - d0
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '8G'
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+networks:
+  d0:
+    driver: bridge
