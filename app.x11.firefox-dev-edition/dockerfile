@@ -1,0 +1,30 @@
+# ----------------
+# Image: alpine
+# Docs: https://hub.docker.com/_/alpine
+# ----------------
+
+FROM alpine:latest
+
+RUN apk update --no-cache && \
+    apk add --no-cache \
+    ca-certificates \
+    pciutils-libs \
+    dbus-x11 \
+    mesa-gl \
+    mesa-dri-swrast \
+    mesa-egl \
+    pulseaudio \
+    pulseaudio-alsa \
+    alsa-lib \
+    alsa-plugins-pulse \
+    ttf-dejavu \
+    curl \
+    tar \
+    bzip2
+
+WORKDIR /tmp
+
+RUN curl -o firefox.tar.bz2 -LJO "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" && \
+    tar -xvf firefox.tar.bz2
+
+CMD [ "/bin/sh", "-c", "/tmp/firefox/firefox" ]
