@@ -4,7 +4,15 @@ Launch Firefox Developer Edition in a docker container with secure X11 host isol
 
 ### Usage
 
-Refer to [build.sh](./build.sh) and [firefox.devedition.sh](./firefox.devedition.sh) scripts provided.
+Refer to [build.sh](./build.sh) and [firefox.devedition.sh](./firefox.devedition.sh) scripts provided. Defaults to `fedora` build target.
+
+Workaround to the known Xcursor bug can be achieved by copying `.Xdefaults` to the shared home folder path of `x11docker` defined in [firefox.devedition.sh](firefox.devedition.sh).
+
+```
+# Enable line on first run
+
+# cp -n .Xdefaults /home/$USER/x11docker/firefox-dev/.Xdefaults
+```
 
 ### Security
 
