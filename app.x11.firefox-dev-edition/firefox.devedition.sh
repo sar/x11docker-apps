@@ -2,6 +2,8 @@
 # x11docker:firefox.dev
 # ------------
 
-x11docker -p --home firefox.dev:latest
+# cp -n .Xdefaults /home/$USER/x11docker/firefox-dev/.Xdefaults
+
+x11docker -p --home --hostnet firefox.dev:latest
 
 set +x;
