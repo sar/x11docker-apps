@@ -33,7 +33,7 @@ RUN yum install -y \
 
 WORKDIR /home
 
-RUN curl -o firefox.tar.bz2 -LJO "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" && \
+RUN curl -o firefox.tar.bz2 -LJO "https://download-installer.cdn.mozilla.net/pub/devedition/releases/85.0b9/linux-x86_64/en-US/firefox-85.0b9.tar.bz2" && \
     tar -xvf firefox.tar.bz2
 
 RUN echo "Xcursor.size: 24" >> ~/.Xdefaults && \
