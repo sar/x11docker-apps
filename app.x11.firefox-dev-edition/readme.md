@@ -11,7 +11,7 @@ Workaround to the known Xcursor bug can be achieved by copying `.Xdefaults` to t
 ```
 # Enable line on first run
 
-# cp -n .Xdefaults /home/$USER/x11docker/firefox-dev/.Xdefaults
+# cp -n .Xdefaults /home/$USER/x11docker/x11-firefox-dev/.Xdefaults
 ```
 
 ### Security
