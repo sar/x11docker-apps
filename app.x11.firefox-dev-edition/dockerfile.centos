@@ -1,0 +1,42 @@
+# ----------------
+# Image: centos
+# Docs: https://hub.docker.com/_/centos
+# ----------------
+
+# WARNING: BaseOS, AppStream repos update over HTTP insecure connection
+# Not recommended for production usage.
+
+FROM centos:latest
+
+RUN yum update -y && \
+    dnf install -y --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf install -y --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm && \
+    yum install -y dnf-plugins-core && \
+    dnf config-manager --enable powertools
+
+RUN yum install -y \
+    pciutils-libs \
+    dbus-x11 \
+    dbus-glib \
+    libXt \
+    gtk3.x86_64 \
+    mesa-libGL.x86_64 \
+    mesa-libEGL.x86_64 \
+    mesa-dri-drivers.x86_64 \
+    pulseaudio \
+    alsa-lib \
+    wget \
+    bzip2 \
+    dejavu-sans-fonts \
+    libXcursor.x86_64 \
+    adwaita-cursor-theme
+
+WORKDIR /home
+
+RUN curl -o firefox.tar.bz2 -LJO "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" && \
+    tar -xvf firefox.tar.bz2
+
+RUN echo "Xcursor.size: 24" >> ~/.Xdefaults && \
+    echo "Xcursor.theme: Adwaita" >> ~/.Xdefaults
+
+CMD [ "/bin/sh", "-c", "/home/firefox/firefox" ]
